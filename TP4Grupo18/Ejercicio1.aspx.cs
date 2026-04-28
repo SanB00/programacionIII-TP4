@@ -1,4 +1,6 @@
 using System;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -11,22 +13,17 @@ namespace TP4Grupo18
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack) {
                 asignarReglasEnLosValidadores();
-                txtContrasena.TextMode = TextBoxMode.Password;
-                txtContrasenaRepetida.TextMode = TextBoxMode.Password;
                 cargarGrilla();
             }
         }
 
         private void asignarReglasEnLosValidadores() {
-            revLocalidad.ValidationExpression = $"^.{{{Common.MIN_CHARS_TEXTO},{Common.MAX_CHARS_TEXTO}}}$"; //ValidationExpression = "^.{1,25}$"
-            revLocalidad.ErrorMessage = $"Mínimo {Common.MIN_CHARS_TEXTO} y máximo {Common.MAX_CHARS_TEXTO} caracteres"; //ErrorMessage="Mínimo 1 y máximo 25 caracteres." 
-            rfvLocalidad.ErrorMessage = "La localidad es un campo requerido. Por favor completar";
             rfvLocalidadSeleccionada.ErrorMessage = "Seleccione una localidad del desplegable";
         }
 
         protected void btnGuardarLocalidad_Click(object sender, EventArgs e) {
             #region 1) Preparar variables y limpiar inputs
-            String strLocalidad = Common.eliminarEspaciosDelTexto(txtLocalidad.Text);
+            String strLocalidad = Common.eliminarEspaciosDelTexto(ddlLocalidades.SelectedItem.Text);
             #endregion
 
             #region 2) Validar campos
@@ -56,47 +53,7 @@ namespace TP4Grupo18
             #endregion
 
             #region 5) Limpiar campos después de cargar la tabla
-            this.btnLimpiar_Click(this, e);
             #endregion
-        }
-
-        protected void btnLimpiar_Click(object sender, EventArgs e) {
-            txtLocalidad.Text = string.Empty;
-        }
-
-        protected void btnGuardarUsuario_Click(object sender, EventArgs e) {
-            #region 1) Preparar variables y limpiar inputs
-            String strNombreUsuario = Common.eliminarEspaciosDelTexto(txtNombreUsuario.Text);
-            /*
-                txtNombreUsuario
-                txtContrasena
-                txtContrasenaRepetida
-                txtCorreoElectronico
-                txtCodigoPostal
-                ddlLocalidades
-            */
-            #endregion
-
-            #region 2) Validar campos
-            string msgDeErrores = String.Empty;
-            if (string.IsNullOrEmpty(strNombreUsuario)) { msgDeErrores += "\n * El nombre de usuario no debe tener espacios o quedar en blanco."; }
-            if (!string.IsNullOrEmpty(msgDeErrores)) {
-                Common.mostrarMensajeEnAlerta(msgDeErrores, this);
-                return;
-            }
-            #endregion
-
-            #region 4) Cargar label de bienvenida
-            lblResultadoUsuario.Text = $"Bienvenido {strNombreUsuario} !";
-            #endregion
-
-            #region 5) Limpiar campos después de cargar la tabla
-            //this.btnLimpiar_Click(this, e);
-            #endregion
-        }
-
-        protected void btnInicio_Click(object sender, EventArgs e) {
-            Response.Redirect("Inicio.aspx");
         }
 
 
@@ -116,5 +73,29 @@ namespace TP4Grupo18
             sqlDataReader.Close();
             sqlConnection.Close();
         }
+
+
+
+
+        public DataTable ObtenerDatos(string consultaSQL) {
+            string cadenaConexion = ConfigurationManager.ConnectionStrings["MiConexionSQL"].ConnectionString;
+            DataTable tabla = new DataTable();
+
+            // El bloque 'using' asegura que la conexión se cierre SIEMPRE, incluso si hay error
+            using (SqlConnection cn = new SqlConnection(cadenaConexion)) {
+                try {
+                    SqlCommand cmd = new SqlCommand(consultaSQL, cn);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    cn.Open();
+                    adapter.Fill(tabla); // Llena el DataTable y gestiona el Reader internamente
+                }
+                catch (Exception ex) {
+                    // Aquí puedes loguear el error o lanzarlo
+                    throw new Exception("Error al consultar la base de datos: " + ex.Message);
+                }
+            }
+            return tabla;
+        }
+
     }
 }
