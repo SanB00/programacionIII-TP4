@@ -13,7 +13,7 @@ namespace TP4Grupo18
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack) {
                 asignarReglasEnLosValidadores();
-                cargarGrilla();
+                cargarListaLocalidades();
             }
         }
 
@@ -28,9 +28,7 @@ namespace TP4Grupo18
 
             #region 2) Validar campos
             string msgDeErrores = String.Empty;
-            if (string.IsNullOrEmpty(strLocalidad)) { msgDeErrores += "\n * La localidad no debe tener espacios o quedar en blanco."; }
-            if (!Common.estaElTextoDentroDelRango(strLocalidad)) { msgDeErrores += $"\n * La localidad debe tener entre {Common.MIN_CHARS_TEXTO} y {Common.MAX_CHARS_TEXTO} caracteres."; }
-            if (!Common.esAlfanumerico(strLocalidad)) { msgDeErrores += $"\n * La localidad solo puede llevar números y letras. Por favor elimine los caracteres especiales."; }
+            if (string.IsNullOrEmpty(strLocalidad)) { msgDeErrores += "\n * La localidad no debe quedar en blanco."; }
             if (!string.IsNullOrEmpty(msgDeErrores)) {
                 Common.mostrarMensajeEnAlerta(msgDeErrores, this);
                 return;
@@ -57,44 +55,33 @@ namespace TP4Grupo18
         }
 
 
-        private void cargarGrilla() {
+        private void cargarListaLocalidades(int idProvincia = 0) {
             const string cadenaConexion = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Viajes;Integrated Security=True";
             string consultaSQL = "SELECT * FROM Localidades";
-
-
-            SqlConnection sqlConnection = new SqlConnection(cadenaConexion);
-            sqlConnection.Open();
-
-            SqlCommand sqlCommand = new SqlCommand(consultaSQL, sqlConnection);
-            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-            if (!sqlDataReader.Read()) { return; }
-            gvPrueba.DataSource = sqlDataReader;
-            gvPrueba.DataBind();
-            sqlDataReader.Close();
-            sqlConnection.Close();
+            DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
+            ddlLocalidades.DataSource = dataTable;
+            ddlLocalidades.DataTextField = "NombreLocalidad";
+            ddlLocalidades.DataValueField = "IdLocalidad";
+            ddlLocalidades.DataBind();
         }
 
-
-
-
-        public DataTable ObtenerDatos(string consultaSQL) {
-            string cadenaConexion = ConfigurationManager.ConnectionStrings["MiConexionSQL"].ConnectionString;
-            DataTable tabla = new DataTable();
+        public DataTable obtenerTablaDeLaBaseDeDatos(string consultaSQL, string cadenaConexion) {
+            string connectionString = cadenaConexion;//ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
+            DataTable dataTable = new DataTable();
 
             // El bloque 'using' asegura que la conexión se cierre SIEMPRE, incluso si hay error
-            using (SqlConnection cn = new SqlConnection(cadenaConexion)) {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString)) {
                 try {
-                    SqlCommand cmd = new SqlCommand(consultaSQL, cn);
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    cn.Open();
-                    adapter.Fill(tabla); // Llena el DataTable y gestiona el Reader internamente
+                    SqlCommand sqlCommand = new SqlCommand(consultaSQL, sqlConnection);
+                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                    sqlConnection.Open();
+                    sqlDataAdapter.Fill(dataTable); // Llena el DataTable y gestiona el Reader internamente
                 }
                 catch (Exception ex) {
-                    // Aquí puedes loguear el error o lanzarlo
                     throw new Exception("Error al consultar la base de datos: " + ex.Message);
                 }
             }
-            return tabla;
+            return dataTable;
         }
 
     }

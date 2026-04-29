@@ -13,7 +13,6 @@
 
         .colBordes {
             width: 10%;
-            background-color: lightblue;
         }
 
         .colEtiquetas {
@@ -74,7 +73,7 @@
                 </tr>
                 <tr>
                     <td class="colBordes "></td>
-                    <td class="colEtiquetas">Provincia: </td>
+                    <td class="colEtiquetas">PROVINCIA: </td>
                     <td class="colCampos">
                         <asp:DropDownList ID="ddlProvincia" runat="server" ToolTip="Seleccione una de las provincias cargadas"></asp:DropDownList>
                     </td>
@@ -92,7 +91,7 @@
                 </tr>
                 <tr>
                     <td class="colBordes "></td>
-                    <td class="colEtiquetas">Localidad: </td>
+                    <td class="colEtiquetas">LOCALIDAD: </td>
                     <td class="colCampos">
                         <asp:DropDownList ID="ddlLocalidades" runat="server" ToolTip="Seleccione una de las localidades cargadas"></asp:DropDownList>
                     </td>
