@@ -60,7 +60,25 @@ namespace TP4Grupo18
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLocalidadSeleccionada;
 
         /// <summary>
-        /// gvPrueba control.
+        /// Control ddlProvinciaFinal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvinciaFinal;
+
+        /// <summary>
+        /// Control ddlLocalidadesFinal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocalidadesFinal;
+
+        /// <summary>
+        /// Control gvPrueba.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

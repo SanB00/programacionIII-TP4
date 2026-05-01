@@ -58,6 +58,7 @@ namespace TP4Grupo18
         private void cargarListaProvincias()
         {
             const string cadenaConexion = @"Data Source=localhost;Initial Catalog=Viajes;Integrated Security=True;";
+            //const string cadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;TrustServerCertificate=True;";
             string consultaSQL = "SELECT * FROM Provincias";
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
             ddlProvincia.DataSource = dataTable;
@@ -67,6 +68,7 @@ namespace TP4Grupo18
         }
         private void cargarListaLocalidades(int idProvincia = 0) {
             const string cadenaConexion = @"Data Source=localhost;Initial Catalog=Viajes;Integrated Security=True;";
+            //const string cadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;TrustServerCertificate=True;";
             string consultaSQL = "SELECT * FROM Localidades";
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
             ddlLocalidades.DataSource = dataTable;
