@@ -68,8 +68,9 @@ namespace TP4Grupo18
         private void cargarListaLocalidades(int idProvincia = 0) {
             const string cadenaConexion = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Viajes;Integrated Security=True;";
             //const string cadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;TrustServerCertificate=True;";
-            string consultaSQL = "SELECT * FROM Localidades";
+            string consultaSQL = $"SELECT * FROM Localidades where IdProvincia = {idProvincia}";
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
+            ddlLocalidades.Items.Clear();
             ddlLocalidades.DataSource = dataTable;
             ddlLocalidades.DataTextField = "NombreLocalidad";
             ddlLocalidades.DataValueField = "IdLocalidad";
@@ -95,5 +96,9 @@ namespace TP4Grupo18
             return dataTable;
         }
 
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e) {
+            int idProvincia = int.Parse(ddlProvincia.SelectedValue);
+            cargarListaLocalidades(idProvincia);
+        }
     }
 }
