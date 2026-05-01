@@ -13,7 +13,7 @@ namespace TP4Grupo18
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack) {
                 asignarReglasEnLosValidadores();
-                cargarListaLocalidades();
+                cargarListaProvincias();
             }
         }
 
@@ -21,61 +21,56 @@ namespace TP4Grupo18
             rfvLocalidadSeleccionada.ErrorMessage = "Seleccione una localidad del desplegable";
         }
 
-        protected void btnGuardarLocalidad_Click(object sender, EventArgs e) {
-            #region 1) Preparar variables y limpiar inputs
-            String strLocalidad = Common.eliminarEspaciosDelTexto(ddlLocalidades.SelectedItem.Text);
-            #endregion
-
-            #region 2) Validar campos
-            string msgDeErrores = String.Empty;
-            if (string.IsNullOrEmpty(strLocalidad)) { msgDeErrores += "\n * La localidad no debe quedar en blanco."; }
-            if (!string.IsNullOrEmpty(msgDeErrores)) {
-                Common.mostrarMensajeEnAlerta(msgDeErrores, this);
-                return;
-            }
-            #endregion
-
-            #region 3) Validar repetidos con listado de localidades
-            foreach (ListItem item in ddlLocalidades.Items) {
-                if (item.Text.Equals(strLocalidad, StringComparison.OrdinalIgnoreCase)) {
-                    string mensaje = $"La localidad \"{strLocalidad}\" ya existe en el listado. Por favor no repetir el valor";
-                    Common.mostrarMensajeEnAlerta(mensaje, this);
-                    return;
-                }
-            }
-            #endregion
-
-            #region 4) Cargar listado de localidades
-            strLocalidad = Common.obtenerTextoPrimerLetraMayuscula(strLocalidad);
-            ddlLocalidades.Items.Add(new ListItem(strLocalidad, strLocalidad));
-            #endregion
-
-            #region 5) Limpiar campos después de cargar la tabla
-            #endregion
-        }
-
-
-        private void cargarListaLocalidades(int idProvincia = 0) {
-            const string cadenaConexion = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Viajes;Integrated Security=True";
-            string consultaSQL = "SELECT * FROM Localidades";
+        private void cargarListaProvincias() {
+            string cadenaConexion = ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
+            string consultaSQL = "SELECT * FROM Provincias";
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
+            ddlProvincia.Items.Clear();
+            ddlProvincia.DataSource = dataTable;
+            ddlProvincia.DataTextField = "NombreProvincia";
+            ddlProvincia.DataValueField = "IdProvincia";
+            ddlProvincia.DataBind();
+        }
+        private void cargarListaLocalidades(int idProvincia = 0, DropDownList ddlLocalidades = null) {
+            string cadenaConexion = ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
+            string consultaSQL = "SELECT IdLocalidad, NombreLocalidad FROM Localidades WHERE IdProvincia = @IdProvincia";
+            SqlParameter[] parametros = new SqlParameter[] {
+                new SqlParameter("@IdProvincia", idProvincia)
+            };
+            DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion, parametros);
+            ddlLocalidades.Items.Clear();
             ddlLocalidades.DataSource = dataTable;
             ddlLocalidades.DataTextField = "NombreLocalidad";
             ddlLocalidades.DataValueField = "IdLocalidad";
             ddlLocalidades.DataBind();
         }
+        private void cargarListaProvinciaFinal(int idProvincia = 0) {
+            string cadenaConexion = ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
+            string consultaSQL = "SELECT * FROM Provincias ";
+            string idProvinciaSeleccionada = idProvincia.ToString();
+            consultaSQL = "SELECT * FROM Provincias WHERE IdProvincia <> " + idProvinciaSeleccionada;
+            DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
+            ddlProvinciaFinal.Items.Clear();
+            ddlProvinciaFinal.DataSource = dataTable;
+            ddlProvinciaFinal.DataTextField = "NombreProvincia";
+            ddlProvinciaFinal.DataValueField = "IdProvincia";
+            ddlProvinciaFinal.DataBind();
+        }
 
-        public DataTable obtenerTablaDeLaBaseDeDatos(string consultaSQL, string cadenaConexion) {
-            string connectionString = cadenaConexion;//ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
+        public DataTable obtenerTablaDeLaBaseDeDatos(string consultaSQL, string cadenaConexion = null, SqlParameter[] parametros = null) {
+            string connectionString = string.IsNullOrEmpty(cadenaConexion) ? ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString : cadenaConexion;
             DataTable dataTable = new DataTable();
 
             // El bloque 'using' asegura que la conexión se cierre SIEMPRE, incluso si hay error
             using (SqlConnection sqlConnection = new SqlConnection(connectionString)) {
                 try {
                     SqlCommand sqlCommand = new SqlCommand(consultaSQL, sqlConnection);
+                    if (parametros != null) {
+                        sqlCommand.Parameters.AddRange(parametros);
+                    }
                     SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
                     sqlConnection.Open();
-                    sqlDataAdapter.Fill(dataTable); // Llena el DataTable y gestiona el Reader internamente
+                    sqlDataAdapter.Fill(dataTable);
                 }
                 catch (Exception ex) {
                     throw new Exception("Error al consultar la base de datos: " + ex.Message);
@@ -84,5 +79,31 @@ namespace TP4Grupo18
             return dataTable;
         }
 
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e) {
+            int idProvincia = int.Parse(ddlProvincia.SelectedValue);
+            cargarListaLocalidades(idProvincia, ddlLocalidades);
+            ddlProvinciaFinal.Items.Clear();
+            cargarListaProvinciaFinal(idProvincia);
+        }
+
+        protected void ddlProvinciaFinal_SelectedIndexChanged(object sender, EventArgs e) {
+            int idProvincia = int.Parse(ddlProvinciaFinal.SelectedValue);
+            cargarListaLocalidades(idProvincia, ddlLocalidadesFinal);
+        }
+
+        protected void ddlLocalidadesFinal_SelectedIndexChanged(object sender, EventArgs e) {
+            String strLocalidadInicio = Common.eliminarEspaciosDelTexto(ddlLocalidades.SelectedItem.Text);
+            String strProvinciaInicio = Common.eliminarEspaciosDelTexto(ddlProvincia.SelectedItem.Text);
+            String strLocalidadFin = Common.eliminarEspaciosDelTexto(ddlLocalidadesFinal.SelectedItem.Text);
+            String strProvinciaFin = Common.eliminarEspaciosDelTexto(ddlProvinciaFinal.SelectedItem.Text);
+            string msgDeErrores = String.Empty;
+            if (string.IsNullOrEmpty(strLocalidadInicio)) { msgDeErrores += "\n * La localidad de inicio no debe quedar en blanco."; }
+            if (string.IsNullOrEmpty(strProvinciaInicio)) { msgDeErrores += "\n * La provincia de inicio no debe quedar en blanco."; }
+            if (string.IsNullOrEmpty(strLocalidadFin)) { msgDeErrores += "\n * La localidad final no debe quedar en blanco."; }
+            if (string.IsNullOrEmpty(strProvinciaFin)) { msgDeErrores += "\n * La provincia final no debe quedar en blanco."; }
+            string mensaje = $"VIAJE LISTO\n\n- Inicia desde la localidad \"{strLocalidadInicio}\" provincia de \"{strProvinciaInicio}\" ";
+            mensaje += $"\n- Finaliza en la localidad \"{strLocalidadFin}\" provincia de \"{strProvinciaFin}\".";
+            Common.mostrarMensajeEnAlerta(mensaje, this);
+        }
     }
 }
