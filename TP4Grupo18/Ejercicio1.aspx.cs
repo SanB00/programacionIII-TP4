@@ -13,6 +13,7 @@ namespace TP4Grupo18
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack) {
                 asignarReglasEnLosValidadores();
+                cargarListaProvincias();
                 cargarListaLocalidades();
             }
         }
@@ -54,9 +55,18 @@ namespace TP4Grupo18
             #endregion
         }
 
-
+        private void cargarListaProvincias()
+        {
+            const string cadenaConexion = @"Data Source=localhost;Initial Catalog=Viajes;Integrated Security=True;";
+            string consultaSQL = "SELECT * FROM Provincias";
+            DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
+            ddlProvincia.DataSource = dataTable;
+            ddlProvincia.DataTextField = "NombreProvincia";
+            ddlProvincia.DataValueField = "IdProvincia";
+            ddlProvincia.DataBind();
+        }
         private void cargarListaLocalidades(int idProvincia = 0) {
-            const string cadenaConexion = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Viajes;Integrated Security=True";
+            const string cadenaConexion = @"Data Source=localhost;Initial Catalog=Viajes;Integrated Security=True;";
             string consultaSQL = "SELECT * FROM Localidades";
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
             ddlLocalidades.DataSource = dataTable;
