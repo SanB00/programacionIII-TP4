@@ -68,16 +68,18 @@ namespace TP4Grupo18
         private void cargarListaLocalidades(int idProvincia = 0) {
             const string cadenaConexion = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Viajes;Integrated Security=True;";
             //const string cadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;TrustServerCertificate=True;";
-            string consultaSQL = $"SELECT * FROM Localidades where IdProvincia = {idProvincia}";
-            DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
-            ddlLocalidades.Items.Clear();
+            string consultaSQL = "SELECT IdLocalidad, NombreLocalidad FROM Localidades WHERE IdProvincia = @IdProvincia";
+            SqlParameter[] parametros = new SqlParameter[] {
+                new SqlParameter("@IdProvincia", idProvincia)
+            };
+            DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion, parametros);
             ddlLocalidades.DataSource = dataTable;
             ddlLocalidades.DataTextField = "NombreLocalidad";
             ddlLocalidades.DataValueField = "IdLocalidad";
             ddlLocalidades.DataBind();
         }
 
-        public DataTable obtenerTablaDeLaBaseDeDatos(string consultaSQL, string cadenaConexion) {
+        public DataTable obtenerTablaDeLaBaseDeDatos(string consultaSQL, string cadenaConexion, SqlParameter[] parametros = null) {
             string connectionString = cadenaConexion;//ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
             DataTable dataTable = new DataTable();
 
@@ -85,9 +87,13 @@ namespace TP4Grupo18
             using (SqlConnection sqlConnection = new SqlConnection(connectionString)) {
                 try {
                     SqlCommand sqlCommand = new SqlCommand(consultaSQL, sqlConnection);
+                    if (parametros != null)
+                    {
+                        sqlCommand.Parameters.AddRange(parametros);
+                    }
                     SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
                     sqlConnection.Open();
-                    sqlDataAdapter.Fill(dataTable); // Llena el DataTable y gestiona el Reader internamente
+                    sqlDataAdapter.Fill(dataTable); 
                 }
                 catch (Exception ex) {
                     throw new Exception("Error al consultar la base de datos: " + ex.Message);
