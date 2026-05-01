@@ -55,8 +55,10 @@ namespace TP4Grupo18
             #endregion
         }
 
-        private void cargarListaProvincias() {
-            const string cadenaConexion = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Viajes;Integrated Security=True;";
+        private void cargarListaProvincias()
+        {
+            const string cadenaConexion = @"Data Source=DESKTOP-RFDMNU2\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";//yulieth
+            //const string cadenaConexion = @"Data Source=localhost;Initial Catalog=Viajes;Integrated Security=True;";
             //const string cadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;TrustServerCertificate=True;";
             string consultaSQL = "SELECT * FROM Provincias";
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
@@ -77,6 +79,33 @@ namespace TP4Grupo18
             ddlLocalidades.DataTextField = "NombreLocalidad";
             ddlLocalidades.DataValueField = "IdLocalidad";
             ddlLocalidades.DataBind();
+        }
+        private void cargarListaPrivinciaFinal()
+        {
+
+            string consultaSQL = "SELECT * FROM Provincias ";
+            const string cadenaConexion = @"Data Source=DESKTOP-RFDMNU2\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+            if (ddlProvincia.SelectedIndex > 0)
+            {
+                string idProvinciaSeleccionada = ddlProvincia.SelectedValue;
+                consultaSQL = "SELECT * FROM Provincias WHERE IdProvincia <> " + idProvinciaSeleccionada;
+            }
+            DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
+
+            SqlConnection sqlConnection = new SqlConnection(cadenaConexion);
+            sqlConnection.Open();
+
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consultaSQL, sqlConnection);
+            DataSet dataSet = new DataSet();
+            sqlDataAdapter.Fill(dataSet, "TablaProvincias");
+
+            ddlProvinciaFinal.DataSource = dataSet.Tables["TablaProvincias"];
+            ddlProvinciaFinal.DataTextField = "NombreProvincia";
+            ddlProvinciaFinal.DataValueField = "IdProvincia";
+            ddlProvinciaFinal.DataBind();
+
+                sqlConnection.Close();
+
         }
 
         public DataTable obtenerTablaDeLaBaseDeDatos(string consultaSQL, string cadenaConexion, SqlParameter[] parametros = null) {

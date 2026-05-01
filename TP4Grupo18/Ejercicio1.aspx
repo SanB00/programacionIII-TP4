@@ -89,7 +89,7 @@
                     <td class="colBordes "></td>
                     <td class="colEtiquetas">LOCALIDAD: </td>
                     <td class="colCampos">
-                        <asp:DropDownList ID="ddlLocalidades" runat="server" ToolTip="Seleccione una de las localidades cargadas" AppendDataBoundItems="True">
+                        <asp:DropDownList ID="ddlLocalidades" runat="server" ToolTip="Seleccione una de las localidades cargadas" AppendDataBoundItems="True" AutoPostBack="True">
                             <asp:ListItem>--Seleccionar--</asp:ListItem>
                         </asp:DropDownList>
                     </td>
@@ -132,7 +132,7 @@
                     <td class="colBordes "></td>
                     <td class="colEtiquetas">PROVINCIA: </td>
                     <td class="colCampos">
-                        <asp:DropDownList ID="ddlProvinciaFinal" runat="server" ToolTip="Seleccione una de las provincias cargadas" AppendDataBoundItems="True" AutoPostBack="True">
+                        <asp:DropDownList ID="ddlProvinciaFinal" runat="server" ToolTip="Seleccione una de las provincias cargadas" AppendDataBoundItems="True" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaFinal_SelectedIndexChanged">
                             <asp:ListItem>--Seleccionar--</asp:ListItem>
                         </asp:DropDownList>
                     </td>
