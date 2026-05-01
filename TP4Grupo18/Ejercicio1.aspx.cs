@@ -55,73 +55,58 @@ namespace TP4Grupo18
             #endregion
         }
 
-        private void cargarListaProvincias()
-        {
-            const string cadenaConexion = @"Data Source=DESKTOP-RFDMNU2\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";//yulieth
-            //const string cadenaConexion = @"Data Source=localhost;Initial Catalog=Viajes;Integrated Security=True;";
-            //const string cadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;TrustServerCertificate=True;";
+        private void cargarListaProvincias() {
+            string cadenaConexion = ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
             string consultaSQL = "SELECT * FROM Provincias";
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
+            ddlProvincia.Items.Clear();
             ddlProvincia.DataSource = dataTable;
             ddlProvincia.DataTextField = "NombreProvincia";
             ddlProvincia.DataValueField = "IdProvincia";
             ddlProvincia.DataBind();
         }
         private void cargarListaLocalidades(int idProvincia = 0) {
-            const string cadenaConexion = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Viajes;Integrated Security=True;";
-            //const string cadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;TrustServerCertificate=True;";
+            string cadenaConexion = ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
             string consultaSQL = "SELECT IdLocalidad, NombreLocalidad FROM Localidades WHERE IdProvincia = @IdProvincia";
             SqlParameter[] parametros = new SqlParameter[] {
                 new SqlParameter("@IdProvincia", idProvincia)
             };
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion, parametros);
+            ddlLocalidades.Items.Clear();
             ddlLocalidades.DataSource = dataTable;
             ddlLocalidades.DataTextField = "NombreLocalidad";
             ddlLocalidades.DataValueField = "IdLocalidad";
             ddlLocalidades.DataBind();
         }
-        private void cargarListaPrivinciaFinal()
-        {
-
-            //const string cadenaConexion = @"Data Source=DESKTOP-RFDMNU2\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";//yulieth
-            const string cadenaConexion = @"Data Source=localhost;Initial Catalog=Viajes;Integrated Security=True;";
-            //const string cadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;TrustServerCertificate=True;";
-            
+        private void cargarListaProvinciaFinal() {
+            string cadenaConexion = ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
             string consultaSQL = "SELECT * FROM Provincias ";
-            const string cadenaConexion = @"Data Source=DESKTOP-RFDMNU2\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
-            if (ddlProvincia.SelectedIndex > 0)
-            {
+            if (ddlProvincia.SelectedIndex > 0) {
                 string idProvinciaSeleccionada = ddlProvincia.SelectedValue;
                 consultaSQL = "SELECT * FROM Provincias WHERE IdProvincia <> " + idProvinciaSeleccionada;
             }
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
-
             ddlProvinciaFinal.Items.Clear();
-
             ddlProvinciaFinal.DataSource = dataTable;
             ddlProvinciaFinal.DataTextField = "NombreProvincia";
             ddlProvinciaFinal.DataValueField = "IdProvincia";
             ddlProvinciaFinal.DataBind();
-
-                sqlConnection.Close();
-
         }
 
-        public DataTable obtenerTablaDeLaBaseDeDatos(string consultaSQL, string cadenaConexion, SqlParameter[] parametros = null) {
-            string connectionString = cadenaConexion;//ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
+        public DataTable obtenerTablaDeLaBaseDeDatos(string consultaSQL, string cadenaConexion = null, SqlParameter[] parametros = null) {
+            string connectionString = string.IsNullOrEmpty(cadenaConexion) ? ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString : cadenaConexion;
             DataTable dataTable = new DataTable();
 
             // El bloque 'using' asegura que la conexión se cierre SIEMPRE, incluso si hay error
             using (SqlConnection sqlConnection = new SqlConnection(connectionString)) {
                 try {
                     SqlCommand sqlCommand = new SqlCommand(consultaSQL, sqlConnection);
-                    if (parametros != null)
-                    {
+                    if (parametros != null) {
                         sqlCommand.Parameters.AddRange(parametros);
                     }
                     SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
                     sqlConnection.Open();
-                    sqlDataAdapter.Fill(dataTable); 
+                    sqlDataAdapter.Fill(dataTable);
                 }
                 catch (Exception ex) {
                     throw new Exception("Error al consultar la base de datos: " + ex.Message);
@@ -130,11 +115,15 @@ namespace TP4Grupo18
             return dataTable;
         }
 
-        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-              cargarListaPrivinciaFinal();
-            
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e) {
+            int idProvincia = int.Parse(ddlProvincia.SelectedValue);
+            cargarListaLocalidades(idProvincia);
+            ddlProvinciaFinal.Items.Clear();
+            cargarListaProvinciaFinal();
+        }
+
+        protected void ddlProvinciaFinal_SelectedIndexChanged(object sender, EventArgs e) {
+
         }
     }
 }
