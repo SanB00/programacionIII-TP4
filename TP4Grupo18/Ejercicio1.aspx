@@ -7,10 +7,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
-
         .colBordes {
             width: 10%;
         }
@@ -42,17 +38,15 @@
             }
 
         h3 {
-            border-bottom: 2px solid blue; /* Línea azul de 2px de grosor */
+            border-bottom: 2px solid darkblue; /* Línea azul de 2px de grosor */
             display: inline-block; /* Hace que la línea solo cubra el texto, no el ancho total */
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-
-
         <div>
-            <table class="auto-style1">
+            <table>
                 <tr>
                     <td class="colBordes">&nbsp;</td>
                     <td class="colEtiquetas">&nbsp;</td>
@@ -75,7 +69,7 @@
                     <td class="colBordes "></td>
                     <td class="colEtiquetas">PROVINCIA: </td>
                     <td class="colCampos">
-                        <asp:DropDownList ID="ddlProvincia" runat="server" ToolTip="Seleccione una de las provincias cargadas"  AppendDataBoundItems="True" AutoPostBack="True">
+                        <asp:DropDownList ID="ddlProvincia" runat="server" ToolTip="Seleccione una de las provincias cargadas" AppendDataBoundItems="True" AutoPostBack="True">
                             <asp:ListItem>--Seleccionar--</asp:ListItem>
                         </asp:DropDownList>
                     </td>
@@ -125,7 +119,7 @@
                     <td class="colValidacion"></td>
                     <td class="colBordes">&nbsp;</td>
                 </tr>
-<tr>
+                <tr>
                     <td class="colBordes">&nbsp;</td>
                     <td class="colEtiquetas">
                         <h3>DESTINO FINAL</h3>
@@ -138,7 +132,7 @@
                     <td class="colBordes "></td>
                     <td class="colEtiquetas">PROVINCIA: </td>
                     <td class="colCampos">
-                        <asp:DropDownList ID="ddlProvinciaFinal" runat="server" ToolTip="Seleccione una de las provincias cargadas"  AppendDataBoundItems="True" AutoPostBack="True">
+                        <asp:DropDownList ID="ddlProvinciaFinal" runat="server" ToolTip="Seleccione una de las provincias cargadas" AppendDataBoundItems="True" AutoPostBack="True">
                             <asp:ListItem>--Seleccionar--</asp:ListItem>
                         </asp:DropDownList>
                     </td>
@@ -176,9 +170,6 @@
                 </tr>
             </table>
         </div>
-
-        <asp:GridView ID="gvPrueba" runat="server">
-        </asp:GridView>
 
     </form>
 </body>
