@@ -152,7 +152,7 @@
                     <td class="colBordes "></td>
                     <td class="colEtiquetas">LOCALIDAD: </td>
                     <td class="colCampos">
-                        <asp:DropDownList ID="ddlLocalidadesFinal" runat="server" ToolTip="Seleccione una de las localidades cargadas" AppendDataBoundItems="True">
+                        <asp:DropDownList ID="ddlLocalidadesFinal" runat="server" ToolTip="Seleccione una de las localidades cargadas" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlLocalidadesFinal_SelectedIndexChanged">
                             <asp:ListItem>--Seleccionar--</asp:ListItem>
                         </asp:DropDownList>
                     </td>
