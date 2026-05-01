@@ -45,29 +45,6 @@
             border-bottom: 2px solid blue; /* Línea azul de 2px de grosor */
             display: inline-block; /* Hace que la línea solo cubra el texto, no el ancho total */
         }
-        .auto-style2 {
-            height: 100%;
-        }
-        .auto-style3 {
-            width: 20%;
-            text-align: right;
-            font-weight: bold;
-            height: 100%;
-        }
-        .auto-style4 {
-            width: 20%;
-            text-align: center;
-            height: 100%;
-        }
-        .auto-style5 {
-            width: 35%;
-            text-align: left;
-            height: 100%;
-        }
-        .auto-style6 {
-            width: 10%;
-            height: 100%;
-        }
     </style>
 </head>
 <body>
@@ -88,21 +65,21 @@
                 <tr>
                     <td class="colBordes">&nbsp;</td>
                     <td class="colEtiquetas">
-                        <asp:Label ID="Label2" runat="server" Font-Size="Large" Font-Underline="True" Text="DESTINO INICIO"></asp:Label>
+                        <h3>DESTINO INICIO</h3>
                     </td>
-                    <td class="colCampos">&nbsp;               </td>
+                    <td class="colCampos">&nbsp;</td>
                     <td class="colValidacion">&nbsp;</td>
                     <td class="colBordes">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style3">PROVINCIA: </td>
-                    <td class="auto-style4">
-                        <asp:DropDownList ID="ddlProvincia" runat="server" ToolTip="Seleccione una de las provincias cargadas" AppendDataBoundItems="True" AutoPostBack="True">
+                    <td class="colBordes "></td>
+                    <td class="colEtiquetas">PROVINCIA: </td>
+                    <td class="colCampos">
+                        <asp:DropDownList ID="ddlProvincia" runat="server" ToolTip="Seleccione una de las provincias cargadas"  AppendDataBoundItems="True" AutoPostBack="True">
                             <asp:ListItem>--Seleccionar--</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td class="auto-style5">
+                    <td class="colValidacion">
                         <asp:RequiredFieldValidator
                             ID="rfvProvinciaSeleccionada"
                             runat="server"
@@ -112,13 +89,13 @@
                             Display="Dynamic"
                             ForeColor="Red">* Seleccione una Provincia</asp:RequiredFieldValidator>
                     </td>
-                    <td class="auto-style6"></td>
+                    <td class="colBordes">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="colBordes "></td>
                     <td class="colEtiquetas">LOCALIDAD: </td>
                     <td class="colCampos">
-                        <asp:DropDownList ID="ddlLocalidades" runat="server" ToolTip="Seleccione una de las localidades cargadas" AppendDataBoundItems="True" AutoPostBack="True">
+                        <asp:DropDownList ID="ddlLocalidades" runat="server" ToolTip="Seleccione una de las localidades cargadas" AppendDataBoundItems="True">
                             <asp:ListItem>--Seleccionar--</asp:ListItem>
                         </asp:DropDownList>
                     </td>
@@ -148,121 +125,55 @@
                     <td class="colValidacion"></td>
                     <td class="colBordes">&nbsp;</td>
                 </tr>
-
-                <tr>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style3">
-                        <asp:Label ID="Label1" runat="server" Font-Size="Large" Font-Underline="True" Text="DESTINO FINAL"></asp:Label>
+<tr>
+                    <td class="colBordes">&nbsp;</td>
+                    <td class="colEtiquetas">
+                        <h3>DESTINO FINAL</h3>
                     </td>
-                    <td class="auto-style4"></td>
-                    <td class="auto-style5"></td>
-                    <td class="auto-style6"></td>
+                    <td class="colCampos">&nbsp;</td>
+                    <td class="colValidacion">&nbsp;</td>
+                    <td class="colBordes">&nbsp;</td>
                 </tr>
-
                 <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">PROVINCIA:</td>
+                    <td class="colBordes "></td>
+                    <td class="colEtiquetas">PROVINCIA: </td>
                     <td class="colCampos">
-                        <asp:DropDownList ID="ddlProvinciaFinal" runat="server" ToolTip="Seleccione una de las provincias cargadas" AppendDataBoundItems="True" AutoPostBack="True">
+                        <asp:DropDownList ID="ddlProvinciaFinal" runat="server" ToolTip="Seleccione una de las provincias cargadas"  AppendDataBoundItems="True" AutoPostBack="True">
                             <asp:ListItem>--Seleccionar--</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td class="colValidacion">&nbsp;</td>
+                    <td class="colValidacion">
+                        <asp:RequiredFieldValidator
+                            ID="rfvProvinciaFinal"
+                            runat="server"
+                            ControlToValidate="ddlProvinciaFinal"
+                            ErrorMessage="Seleccione una Provincia"
+                            ValidationGroup="vgProvinciaLocalidad"
+                            Display="Dynamic"
+                            ForeColor="Red">* Seleccione una Provincia</asp:RequiredFieldValidator>
+                    </td>
                     <td class="colBordes">&nbsp;</td>
                 </tr>
-
                 <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">LOCALIDAD:</td>
+                    <td class="colBordes "></td>
+                    <td class="colEtiquetas">LOCALIDAD: </td>
                     <td class="colCampos">
-                        <asp:DropDownList ID="ddlLocalidadesFinal" runat="server" ToolTip="Seleccione una de las localidades cargadas" AppendDataBoundItems="True" AutoPostBack="True">
+                        <asp:DropDownList ID="ddlLocalidadesFinal" runat="server" ToolTip="Seleccione una de las localidades cargadas" AppendDataBoundItems="True">
                             <asp:ListItem>--Seleccionar--</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td class="colValidacion">&nbsp;</td>
+                    <td class="colValidacion">
+                        <asp:RequiredFieldValidator
+                            ID="rfvLocalidadFinal"
+                            runat="server"
+                            ControlToValidate="ddlLocalidadesFinal"
+                            ErrorMessage="Seleccione una localidad"
+                            ValidationGroup="vgProvinciaLocalidad"
+                            Display="Dynamic"
+                            ForeColor="Red">* Seleccione una localidad</asp:RequiredFieldValidator>
+                    </td>
                     <td class="colBordes">&nbsp;</td>
                 </tr>
-
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-
-                <tr>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style3"></td>
-                    <td class="auto-style4"></td>
-                    <td class="auto-style5"></td>
-                    <td class="auto-style6"></td>
-                </tr>
-
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-
             </table>
         </div>
 

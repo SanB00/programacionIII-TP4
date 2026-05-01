@@ -60,25 +60,43 @@ namespace TP4Grupo18
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLocalidadSeleccionada;
 
         /// <summary>
-        /// Control ddlProvinciaFinal.
+        /// ddlProvinciaFinal control.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProvinciaFinal;
 
         /// <summary>
-        /// Control ddlLocalidadesFinal.
+        /// rfvProvinciaFinal control.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvProvinciaFinal;
+
+        /// <summary>
+        /// ddlLocalidadesFinal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlLocalidadesFinal;
 
         /// <summary>
-        /// Control gvPrueba.
+        /// rfvLocalidadFinal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLocalidadFinal;
+
+        /// <summary>
+        /// gvPrueba control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

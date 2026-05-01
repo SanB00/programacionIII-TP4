@@ -55,9 +55,8 @@ namespace TP4Grupo18
             #endregion
         }
 
-        private void cargarListaProvincias()
-        {
-            const string cadenaConexion = @"Data Source=localhost;Initial Catalog=Viajes;Integrated Security=True;";
+        private void cargarListaProvincias() {
+            const string cadenaConexion = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Viajes;Integrated Security=True;";
             //const string cadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;TrustServerCertificate=True;";
             string consultaSQL = "SELECT * FROM Provincias";
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
@@ -67,7 +66,7 @@ namespace TP4Grupo18
             ddlProvincia.DataBind();
         }
         private void cargarListaLocalidades(int idProvincia = 0) {
-            const string cadenaConexion = @"Data Source=localhost;Initial Catalog=Viajes;Integrated Security=True;";
+            const string cadenaConexion = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Viajes;Integrated Security=True;";
             //const string cadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;TrustServerCertificate=True;";
             string consultaSQL = "SELECT * FROM Localidades";
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
