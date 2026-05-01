@@ -83,6 +83,10 @@ namespace TP4Grupo18
         private void cargarListaPrivinciaFinal()
         {
 
+            //const string cadenaConexion = @"Data Source=DESKTOP-RFDMNU2\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";//yulieth
+            const string cadenaConexion = @"Data Source=localhost;Initial Catalog=Viajes;Integrated Security=True;";
+            //const string cadenaConexion = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;TrustServerCertificate=True;";
+            
             string consultaSQL = "SELECT * FROM Provincias ";
             const string cadenaConexion = @"Data Source=DESKTOP-RFDMNU2\SQLEXPRESS;Initial Catalog=Viajes;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
             if (ddlProvincia.SelectedIndex > 0)
@@ -92,14 +96,9 @@ namespace TP4Grupo18
             }
             DataTable dataTable = obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
 
-            SqlConnection sqlConnection = new SqlConnection(cadenaConexion);
-            sqlConnection.Open();
+            ddlProvinciaFinal.Items.Clear();
 
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consultaSQL, sqlConnection);
-            DataSet dataSet = new DataSet();
-            sqlDataAdapter.Fill(dataSet, "TablaProvincias");
-
-            ddlProvinciaFinal.DataSource = dataSet.Tables["TablaProvincias"];
+            ddlProvinciaFinal.DataSource = dataTable;
             ddlProvinciaFinal.DataTextField = "NombreProvincia";
             ddlProvinciaFinal.DataValueField = "IdProvincia";
             ddlProvinciaFinal.DataBind();
@@ -131,9 +130,11 @@ namespace TP4Grupo18
             return dataTable;
         }
 
-        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e) {
-            int idProvincia = int.Parse(ddlProvincia.SelectedValue);
-            cargarListaLocalidades(idProvincia);
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+              cargarListaPrivinciaFinal();
+            
         }
     }
 }
