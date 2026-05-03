@@ -168,6 +168,80 @@
                     </td>
                     <td class="colBordes">&nbsp;</td>
                 </tr>
+                 <tr>
+                    <td class="colBordes ">&nbsp;</td>
+                    <td class="colEtiquetas">&nbsp;</td>
+                    <td class="colCampos">
+&nbsp;</td>
+                    <td class="colValidacion">
+&nbsp;</td>
+                    <td class="colBordes">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="colBordes ">&nbsp;</td>
+                    <td class="colEtiquetas">TIPO DE VIAJE</td>
+                    <td class="colCampos">
+                        <asp:DropDownList ID="ddlTipoServicio" runat="server" AutoPostBack="True">
+                            <asp:ListItem>-- Seleccione --</asp:ListItem>
+                            <asp:ListItem Value="1">Estándar</asp:ListItem>
+                            <asp:ListItem Value="2">Premium</asp:ListItem>
+                            <asp:ListItem Value="3">Ultra vip premium</asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                    <td class="colValidacion">
+                        <asp:RequiredFieldValidator
+                            ID="rfvLocalidadFinal0"
+                            runat="server"
+                            ControlToValidate="ddlTipoServicio"
+                            ErrorMessage="Seleccione un el tipo de sevicio"
+                            ValidationGroup="vgProvinciaLocalidad"
+                            Display="Dynamic"
+                            ForeColor="Red">* Seleccione un el tipo de servicio</asp:RequiredFieldValidator>
+                    </td>
+                    <td class="colBordes">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="colBordes ">&nbsp;</td>
+                    <td class="colEtiquetas">&nbsp;</td>
+                    <td class="colCampos">&nbsp;</td>
+                    <td class="colValidacion">&nbsp;</td>
+                    <td class="colBordes">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="colBordes ">&nbsp;</td>
+                    <td class="colEtiquetas">&nbsp;</td>
+                    <td class="colCampos">&nbsp;</td>
+                    <td class="colValidacion">&nbsp;</td>
+                    <td class="colBordes">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="colBordes ">&nbsp;</td>
+                    <td class="colEtiquetas">&nbsp;</td>
+                    <td class="colCampos">&nbsp;</td>
+                    <td class="colValidacion">&nbsp;</td>
+                    <td class="colBordes">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="colBordes ">&nbsp;</td>
+                    <td class="colEtiquetas">&nbsp;</td>
+                    <td class="colCampos">&nbsp;</td>
+                    <td class="colValidacion">&nbsp;</td>
+                    <td class="colBordes">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="colBordes ">&nbsp;</td>
+                    <td class="colEtiquetas">&nbsp;</td>
+                    <td class="colCampos">&nbsp;</td>
+                    <td class="colValidacion">&nbsp;</td>
+                    <td class="colBordes">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="colBordes ">&nbsp;</td>
+                    <td class="colEtiquetas">&nbsp;</td>
+                    <td class="colCampos">&nbsp;</td>
+                    <td class="colValidacion">&nbsp;</td>
+                    <td class="colBordes">&nbsp;</td>
+                </tr>
             </table>
         </div>
 

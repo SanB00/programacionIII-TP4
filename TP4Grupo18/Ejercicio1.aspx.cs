@@ -30,6 +30,7 @@ namespace TP4Grupo18
             ddlProvincia.DataTextField = "NombreProvincia";
             ddlProvincia.DataValueField = "IdProvincia";
             ddlProvincia.DataBind();
+            ddlProvincia.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
         }
         private void cargarListaLocalidades(int idProvincia = 0, DropDownList ddlLocalidades = null) {
             string cadenaConexion = ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
@@ -43,6 +44,7 @@ namespace TP4Grupo18
             ddlLocalidades.DataTextField = "NombreLocalidad";
             ddlLocalidades.DataValueField = "IdLocalidad";
             ddlLocalidades.DataBind();
+            ddlLocalidades.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
         }
         private void cargarListaProvinciaFinal(int idProvincia = 0) {
             string cadenaConexion = ConfigurationManager.ConnectionStrings["dbViajes"].ConnectionString;
@@ -55,6 +57,7 @@ namespace TP4Grupo18
             ddlProvinciaFinal.DataTextField = "NombreProvincia";
             ddlProvinciaFinal.DataValueField = "IdProvincia";
             ddlProvinciaFinal.DataBind();
+            ddlProvinciaFinal.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
         }
 
         public DataTable obtenerTablaDeLaBaseDeDatos(string consultaSQL, string cadenaConexion = null, SqlParameter[] parametros = null) {
@@ -96,14 +99,33 @@ namespace TP4Grupo18
             String strProvinciaInicio = Common.eliminarEspaciosDelTexto(ddlProvincia.SelectedItem.Text);
             String strLocalidadFin = Common.eliminarEspaciosDelTexto(ddlLocalidadesFinal.SelectedItem.Text);
             String strProvinciaFin = Common.eliminarEspaciosDelTexto(ddlProvinciaFinal.SelectedItem.Text);
+
+
             string msgDeErrores = String.Empty;
-            if (string.IsNullOrEmpty(strLocalidadInicio)) { msgDeErrores += "\n * La localidad de inicio no debe quedar en blanco."; }
-            if (string.IsNullOrEmpty(strProvinciaInicio)) { msgDeErrores += "\n * La provincia de inicio no debe quedar en blanco."; }
-            if (string.IsNullOrEmpty(strLocalidadFin)) { msgDeErrores += "\n * La localidad final no debe quedar en blanco."; }
-            if (string.IsNullOrEmpty(strProvinciaFin)) { msgDeErrores += "\n * La provincia final no debe quedar en blanco."; }
-            string mensaje = $"VIAJE LISTO\n\n- Inicia desde la localidad \"{strLocalidadInicio}\" provincia de \"{strProvinciaInicio}\" ";
-            mensaje += $"\n- Finaliza en la localidad \"{strLocalidadFin}\" provincia de \"{strProvinciaFin}\".";
-            Common.mostrarMensajeEnAlerta(mensaje, this);
+            if (string.IsNullOrEmpty(strLocalidadInicio)) { msgDeErrores += "\n * Falta localidad inicio."; }
+            if (string.IsNullOrEmpty(strLocalidadFin)) { msgDeErrores += "\n * Falta localidad final."; }
+
+            if (!string.IsNullOrEmpty(msgDeErrores)) {
+                Common.mostrarMensajeEnAlerta("Errores:" + msgDeErrores, this);
+                return;
+            }
+
+
+            double tarifaBase = 1500.50;
+            string tipoSrv = ddlTipoServicio.SelectedItem.Text;
+            string valSrv = ddlTipoServicio.SelectedValue;
+
+            if (valSrv == "3") { tarifaBase *= 1.5; }
+            else if (valSrv == "2") { tarifaBase += 500.00; }
+
+
+            string mensajeFinal = $"VIAJE LISTO ({tipoSrv})\n\n";
+            mensajeFinal += $"- Desde: {strLocalidadInicio} ({strProvinciaInicio})\n";
+            mensajeFinal += $"- Hasta: {strLocalidadFin} ({strProvinciaFin})\n";
+            mensajeFinal += $"- Costo Estimado: ${tarifaBase:N2}";
+
+
+            Common.mostrarMensajeEnAlerta(mensajeFinal, this);
         }
     }
 }
