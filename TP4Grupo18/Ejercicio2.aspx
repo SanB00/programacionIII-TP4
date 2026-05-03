@@ -43,8 +43,8 @@
                 <td class="auto-style3">IdProducto</td>
                 <td class="auto-style5">
                     <asp:DropDownList ID="DropDownList1" runat="server">
-                        <asp:ListItem>Igual a </asp:ListItem>
-                        <asp:ListItem>Mayor a </asp:ListItem>
+                        <asp:ListItem>Igual a</asp:ListItem>
+                        <asp:ListItem>Mayor a</asp:ListItem>
                         <asp:ListItem>Menor a</asp:ListItem>
                     </asp:DropDownList>
                 </td>
@@ -75,7 +75,7 @@
                 <td class="auto-style4">&nbsp;</td>
                 <td class="auto-style6">&nbsp;</td>
                 <td class="auto-style8">
-                    <asp:Button ID="btnFiltrar" runat="server" style="margin-left: 21px" Text="Filtrar" />
+                    <asp:Button ID="btnFiltrar" runat="server" style="margin-left: 21px" Text="Filtrar" OnClick="btnFiltrar_Click" />
                     <asp:Button ID="btnQuitarFiltro" runat="server" style="margin-left: 31px" Text="Quitar Filtro" />
                 </td>
                 <td>&nbsp;</td>
@@ -101,7 +101,7 @@
             <tr>
                 <td class="auto-style4">&nbsp;</td>
                 <td class="auto-style6">
-                    <asp:GridView ID="gvProductos" runat="server">
+                    <asp:GridView ID="gvProductos" runat="server" OnSelectedIndexChanged="gvProductos_SelectedIndexChanged">
                     </asp:GridView>
                 </td>
                 <td class="auto-style8">&nbsp;</td>

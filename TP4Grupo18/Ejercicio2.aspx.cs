@@ -13,18 +13,16 @@ namespace TP4Grupo18
 {
     public partial class Ejercicio2 : System.Web.UI.Page
     {
-        string NeptunoSQL = "Data Source=localhost\\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True";
+        //string NeptunoSQL = "Data Source=localhost\\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True";
+        string NeptunoSQL = "Data Source=localhost;Initial Catalog=Neptuno;Integrated Security=True";
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
+        protected void Page_Load(object sender, EventArgs e) {
+            if (!IsPostBack) {
                 CargarGrillaDeProductos();
             }
         }
 
-        private void CargarGrillaDeProductos(string consultaSQL = "SELECT IdProducto, NombreProducto, IdCategoría, PrecioUnidad FROM Productos")
-        {
+        private void CargarGrillaDeProductos(string consultaSQL = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad FROM Productos") {
             SqlConnection sqlConnection = new SqlConnection(NeptunoSQL);
             sqlConnection.Open();
 
@@ -38,16 +36,52 @@ namespace TP4Grupo18
 
             sqlConnection.Close();
         }
+        protected void btnFiltrar_Click(object sender, EventArgs e) {
+            string consultaSQL = "SELECT IdProducto, NombreProducto, IdCategoría, PrecioUnidad FROM Productos WHERE 1=1";
 
-        protected void btnQuitarFiltro_Click(object sender, EventArgs e)
-        {
+            if (TextBox1.Text != "") {
+                int idProducto = int.Parse(TextBox1.Text);
+                string operador1 = "";
+
+                switch (DropDownList1.SelectedValue) {
+                    case "Mayor a":
+                        operador1 = ">";
+                        break;
+
+                    case "Menor a":
+                        operador1 = "<";
+                        break;
+
+                    case "Igual a":
+                        operador1 = "=";
+                        break;
+                    default:
+                        operador1 = "=";
+                        break;
+
+                }
+
+                consultaSQL += " AND IdProducto " + operador1 + " " + idProducto;
+            }
+
+            CargarGrillaDeProductos(consultaSQL);
+        }
+
+        protected void btnQuitarFiltro_Click(object sender, EventArgs e) {
+            string consultaSQL = "SELECT IdProducto, NombreProducto, IdCategoría, PrecioUnidad FROM Productos WHERE 1=1";
+
             TextBox1.Text = "";
             TextBox2.Text = "";
 
             DropDownList1.SelectedIndex = 0;
             DropDownList2.SelectedIndex = 0;
 
-            CargarGrillaDeProductos();
+            CargarGrillaDeProductos(consultaSQL);
         }
+
+        protected void gvProductos_SelectedIndexChanged(object sender, EventArgs e) {
+
+        }
+
     }
 }
