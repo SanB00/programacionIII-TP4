@@ -181,7 +181,7 @@
                     <td class="colBordes ">&nbsp;</td>
                     <td class="colEtiquetas">TIPO DE VIAJE</td>
                     <td class="colCampos">
-                        <asp:DropDownList ID="ddlTipoServicio" runat="server" AutoPostBack="True">
+                        <asp:DropDownList ID="ddlTipoServicio" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlTipoServicio_SelectedIndexChanged">
                             <asp:ListItem>-- Seleccione --</asp:ListItem>
                             <asp:ListItem Value="1">Estándar</asp:ListItem>
                             <asp:ListItem Value="2">Premium</asp:ListItem>
@@ -198,41 +198,6 @@
                             Display="Dynamic"
                             ForeColor="Red">* Seleccione un el tipo de servicio</asp:RequiredFieldValidator>
                     </td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
-                    <td class="colBordes">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="colBordes ">&nbsp;</td>
-                    <td class="colEtiquetas">&nbsp;</td>
-                    <td class="colCampos">&nbsp;</td>
-                    <td class="colValidacion">&nbsp;</td>
                     <td class="colBordes">&nbsp;</td>
                 </tr>
                 <tr>

@@ -104,12 +104,14 @@ namespace TP4Grupo18
             string msgDeErrores = String.Empty;
             if (string.IsNullOrEmpty(strLocalidadInicio)) { msgDeErrores += "\n * Falta localidad inicio."; }
             if (string.IsNullOrEmpty(strLocalidadFin)) { msgDeErrores += "\n * Falta localidad final."; }
-
+            if (ddlLocalidades.SelectedValue == "0") { msgDeErrores += "\n * Falta seleccionar una localidad de inicio."; }
+            if (ddlLocalidadesFinal.SelectedValue == "0") { msgDeErrores += "\n * Falta seleccionar una localidad de fin."; }
+            if (ddlProvincia.SelectedValue == "0") { msgDeErrores += "\n * Falta seleccionar una provincia de inicio."; }
+            if (ddlProvinciaFinal.SelectedValue == "0") { msgDeErrores += "\n * Falta seleccionar una provincia de fin."; }
             if (!string.IsNullOrEmpty(msgDeErrores)) {
                 Common.mostrarMensajeEnAlerta("Errores:" + msgDeErrores, this);
                 return;
             }
-
 
             double tarifaBase = 1500.50;
             string tipoSrv = ddlTipoServicio.SelectedItem.Text;
@@ -126,6 +128,10 @@ namespace TP4Grupo18
 
 
             Common.mostrarMensajeEnAlerta(mensajeFinal, this);
+        }
+
+        protected void ddlTipoServicio_SelectedIndexChanged(object sender, EventArgs e) {
+            ddlLocalidadesFinal_SelectedIndexChanged(sender, e);
         }
     }
 }
