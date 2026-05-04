@@ -65,14 +65,24 @@
                 </tr>
                 <tr>
                     <td class="colBordes">&nbsp;</td>
-                    <td class="colEtiquetas">Seleccionar Tema:</td>
-                    <td class="colCampos">
-                        <asp:DropDownList ID="ddlTemas" runat="server">
-                            <asp:ListItem Value="1">Tema 1</asp:ListItem>
-                            <asp:ListItem Value="2">Tema 2</asp:ListItem>
-                            <asp:ListItem Value="3">Tema 3</asp:ListItem>
-                        </asp:DropDownList>
+                    <td class="colEtiquetas">
+                        <h3>Listado de libros: </h3>
                     </td>
+                    <td class="colCampos"></td>
+                    <td class="colValidacion">&nbsp;</td>
+                    <td class="colBordes">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="colBordes">&nbsp;</td>
+                    <td class="colEtiquetas">&nbsp;</td>
+                    <td class="colCampos"></td>
+                    <td class="colValidacion">&nbsp;</td>
+                    <td class="colBordes">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="colBordes">&nbsp;</td>
+                    <td class="colEtiquetas">gvLibros</td>
+                    <td class="colCampos"></td>
                     <td class="colValidacion">&nbsp;</td>
                     <td class="colBordes">&nbsp;</td>
                 </tr>
@@ -85,7 +95,7 @@
                 </tr>
                 <tr>
                     <td class="colBordes">
-                        <asp:LinkButton ID="lbVerLibros" runat="server">Ver Libros</asp:LinkButton>
+                        <asp:LinkButton ID="lbConsultarOtroTema" runat="server">Consultar otro Tema</asp:LinkButton>
                     </td>
                     <td class="colEtiquetas">&nbsp;</td>
                     <td class="colCampos"></td>
