@@ -75,6 +75,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConexionBBDD.cs" />
     <Compile Include="Ejercicio3.aspx.cs">
       <DependentUpon>Ejercicio3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
