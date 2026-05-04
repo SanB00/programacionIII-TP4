@@ -38,44 +38,20 @@ namespace TP4Grupo18
         }
         protected void btnFiltrar_Click(object sender, EventArgs e) {
             string consultaSQL = "SELECT IdProducto, NombreProducto, IdCategoría, PrecioUnidad FROM Productos WHERE 1=1";
-
-            if (TextBox1.Text != "") {
-                int idProducto = int.Parse(TextBox1.Text);
-                string operador1 = "";
-
-                switch (DropDownList1.SelectedValue) {
-                    case "Mayor a":
-                        operador1 = ">";
-                        break;
-
-                    case "Menor a":
-                        operador1 = "<";
-                        break;
-
-                    case "Igual a":
-                        operador1 = "=";
-                        break;
-                    default:
-                        operador1 = "=";
-                        break;
-
-                }
-
-                consultaSQL += " AND IdProducto " + operador1 + " " + idProducto;
-            }
-
+            int idProducto = int.Parse(txtFiltroProducto.Text);
+            string operadorProducto = ddlFiltroProducto.SelectedValue;
+            consultaSQL += " AND IdProducto " + operadorProducto + " " + idProducto;
             CargarGrillaDeProductos(consultaSQL);
         }
 
         protected void btnQuitarFiltro_Click(object sender, EventArgs e) {
             string consultaSQL = "SELECT IdProducto, NombreProducto, IdCategoría, PrecioUnidad FROM Productos WHERE 1=1";
 
-            TextBox1.Text = "";
-            TextBox2.Text = "";
+            txtFiltroProducto.Text = "";
+            txtFiltroCategoria.Text = "";
 
-            DropDownList1.SelectedIndex = 0;
-            DropDownList2.SelectedIndex = 0;
-
+            ddlFiltroProducto.SelectedIndex = 0;
+            ddlFiltroCategoria.SelectedIndex = 0;
             CargarGrillaDeProductos(consultaSQL);
         }
 

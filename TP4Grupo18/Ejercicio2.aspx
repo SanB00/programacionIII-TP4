@@ -4,110 +4,120 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <style type="text/css">
-        .auto-style1 {
-            width: 100%;
+        .colBordes {
+            width: 10%;
         }
-        .auto-style2 {
-            height: 23px;
+
+        .colEtiquetas {
+            width: 20%;
+            text-align: left;
+            font-weight: bold;
         }
-        .auto-style3 {
-            height: 23px;
-            width: 105px;
+
+        .colCampos {
+            width: 20%;
+            text-align: center;
         }
-        .auto-style4 {
-            width: 105px;
+
+        .colValidacion {
+            width: 35%;
+            text-align: left;
         }
-        .auto-style5 {
-            height: 23px;
-            width: 91px;
+
+        td {
+            vertical-align: top;
+            height: 100%;
         }
-        .auto-style6 {
-            width: 91px;
-        }
-        .auto-style7 {
-            height: 23px;
-            width: 242px;
-        }
-        .auto-style8 {
-            width: 242px;
+
+            td select {
+                width: 205px;
+                height: 100%;
+            }
+
+        h3 {
+            border-bottom: 2px solid darkblue; /* Línea azul de 2px de grosor */
+            display: inline-block; /* Hace que la línea solo cubra el texto, no el ancho total */
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <table class="auto-style1">
+        <table>
             <tr>
-                <td class="auto-style3">IdProducto</td>
-                <td class="auto-style5">
-                    <asp:DropDownList ID="DropDownList1" runat="server">
-                        <asp:ListItem>Igual a</asp:ListItem>
-                        <asp:ListItem>Mayor a</asp:ListItem>
-                        <asp:ListItem>Menor a</asp:ListItem>
+                <td class="colBordes">&nbsp;</td>
+                <td class="colEtiquetas">&nbsp;</td>
+                <td class="colCampos">
+                    <h2>Ejercicio 2</h2>
+                </td>
+                <td class="colValidacion">&nbsp;</td>
+                <td class="colBordes">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="colBordes">&nbsp;</td>
+                <td class="colEtiquetas"></td>
+                <td class="colCampos">&nbsp;</td>
+                <td class="colValidacion">&nbsp;</td>
+                <td class="colBordes">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="colBordes">Id Producto</td>
+                <td class="colCampos">
+                    <asp:DropDownList ID="ddlFiltroProducto" runat="server">
+                        <asp:ListItem Value="=">Igual a</asp:ListItem>
+                        <asp:ListItem Value=">">Mayor a</asp:ListItem>
+                        <asp:ListItem Value="<">Menor a</asp:ListItem>
                     </asp:DropDownList>
                 </td>
-                <td class="auto-style7">
-                    <asp:TextBox ID="TextBox1" runat="server" Width="205px"></asp:TextBox>
+                <td class="colValidacion">
+                    <asp:TextBox ID="txtFiltroProducto" runat="server" Width="205px"></asp:TextBox>
                 </td>
-                <td class="auto-style2"></td>
-                <td class="auto-style2"></td>
-                <td class="auto-style2"></td>
+                <td class="colBordes">&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style4">IdCategoria</td>
-                <td class="auto-style6">
-                    <asp:DropDownList ID="DropDownList2" runat="server">
-                        <asp:ListItem>Igual a</asp:ListItem>
-                        <asp:ListItem>Menor a</asp:ListItem>
-                        <asp:ListItem>Mayor a</asp:ListItem>
+                <td class="colBordes">IdCategoria</td>
+                <td class="colCampos">
+                    <asp:DropDownList ID="ddlFiltroCategoria" runat="server">
+                        <asp:ListItem Value="=">Igual a</asp:ListItem>
+                        <asp:ListItem Value=">">Mayor a</asp:ListItem>
+                        <asp:ListItem Value="<">Menor a</asp:ListItem>
                     </asp:DropDownList>
                 </td>
-                <td class="auto-style8">
-                    <asp:TextBox ID="TextBox2" runat="server" Width="205px"></asp:TextBox>
+                <td class="colValidacion">
+                    <asp:TextBox ID="txtFiltroCategoria" runat="server" Width="205px"></asp:TextBox>
                 </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="colBordes">&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style4">&nbsp;</td>
-                <td class="auto-style6">&nbsp;</td>
-                <td class="auto-style8">
-                    <asp:Button ID="btnFiltrar" runat="server" style="margin-left: 21px" Text="Filtrar" OnClick="btnFiltrar_Click" />
-                    <asp:Button ID="btnQuitarFiltro" runat="server" style="margin-left: 31px" Text="Quitar Filtro" />
+                <td class="colBordes">&nbsp;</td>
+                <td class="colCampos">&nbsp;</td>
+                <td class="colValidacion">
+                    <asp:Button ID="btnFiltrar" runat="server" Style="margin-left: 21px" Text="Filtrar" OnClick="btnFiltrar_Click" />
+                    <asp:Button ID="btnQuitarFiltro" runat="server" Style="margin-left: 31px" Text="Quitar Filtro" />
                 </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="colBordes">&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style4">&nbsp;</td>
-                <td class="auto-style6">&nbsp;</td>
-                <td class="auto-style8">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="colBordes">&nbsp;</td>
+                <td class="colCampos">&nbsp;</td>
+                <td class="colValidacion">&nbsp;</td>
+                <td class="colBordes">&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style4">&nbsp;</td>
-                <td class="auto-style6">&nbsp;</td>
-                <td class="auto-style8">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="colBordes">&nbsp;</td>
+                <td class="colCampos">&nbsp;</td>
+                <td class="colBordes">&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style4">&nbsp;</td>
-                <td class="auto-style6">
-                    <asp:GridView ID="gvProductos" runat="server" OnSelectedIndexChanged="gvProductos_SelectedIndexChanged">
+                <td class="colBordes">&nbsp;</td>
+                <td class="colCampos">
+                    <asp:GridView ID="gvProductos" runat="server">
                     </asp:GridView>
                 </td>
-                <td class="auto-style8">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="colValidacion">&nbsp;</td>
+                <td class="colBordes">&nbsp;</td>
             </tr>
         </table>
     </form>
