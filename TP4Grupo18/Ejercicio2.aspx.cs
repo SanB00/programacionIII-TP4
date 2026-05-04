@@ -37,8 +37,7 @@ namespace TP4Grupo18
         }
 
         protected void btnQuitarFiltro_Click(object sender, EventArgs e) {
-            string consultaSQL = "SELECT IdProducto, NombreProducto, IdCategoría, PrecioUnidad FROM Productos WHERE 1=1";
-
+            string consultaSQL = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad FROM Productos WHERE 1=1";
             txtFiltroProducto.Text = "";
             txtFiltroCategoria.Text = "";
 
