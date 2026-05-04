@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.UI.WebControls;
 
 namespace TP4Grupo18
 {
@@ -33,6 +34,29 @@ namespace TP4Grupo18
             int idProducto = int.Parse(txtFiltroProducto.Text);
             string operadorProducto = ddlFiltroProducto.SelectedValue;
             consultaSQL += " AND IdProducto " + operadorProducto + " " + idProducto;
+
+            if (txbCategoria.Text != "") {
+                int idCategoria = int.Parse(txbCategoria.Text);
+                string operador2 = "";
+                switch (DropDownList2.SelectedValue) {
+                    case "Mayor a":
+                        operador2 = ">";
+                        break;
+
+                    case "Menor a":
+                        operador2 = "<";
+                        break;
+
+                    case "Igual a":
+                        operador2 = "=";
+                        break;
+                    default:
+                        operador2 = "=";
+                        break;
+                }
+
+                consultaSQL += " AND IdCategoría " + operador2 + " " + idCategoria;
+            }
             //CargarGrillaDeProductos(consultaSQL);
         }
 
