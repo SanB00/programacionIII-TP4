@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace TP4Grupo18
@@ -9,8 +10,10 @@ namespace TP4Grupo18
     {
         //string NeptunoSQL = "Data Source=localhost\\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True";
         string NeptunoSQL = "Data Source=localhost;Initial Catalog=Neptuno;Integrated Security=True";
+
 #pragma warning disable IDE1006 // Naming Styles
         protected void Page_Load(object sender, EventArgs e) {
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack) {
                 //CargarGrillaDeProductos();
             }
@@ -35,10 +38,10 @@ namespace TP4Grupo18
             string operadorProducto = ddlFiltroProducto.SelectedValue;
             consultaSQL += " AND IdProducto " + operadorProducto + " " + idProducto;
 
-            if (txbCategoria.Text != "") {
-                int idCategoria = int.Parse(txbCategoria.Text);
+            if (txtFiltroCategoria.Text != "") {
+                int idCategoria = int.Parse(txtFiltroCategoria.Text);
                 string operador2 = "";
-                switch (DropDownList2.SelectedValue) {
+                switch (ddlFiltroCategoria.SelectedValue) {
                     case "Mayor a":
                         operador2 = ">";
                         break;
