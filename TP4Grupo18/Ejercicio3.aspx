@@ -84,10 +84,9 @@
                     <td class="colBordes">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="colBordes">
-                        <asp:LinkButton ID="lbVerLibros" runat="server">Ver Libros</asp:LinkButton>
-                    </td>
-                    <td class="colEtiquetas">&nbsp;</td>
+                    <td class="colBordes">&nbsp;</td>
+                    <td class="colEtiquetas">
+                        <asp:LinkButton ID="lbVerLibros" runat="server" OnClick="lbVerLibros_Click">Ver Libros</asp:LinkButton></td>
                     <td class="colCampos"></td>
                     <td class="colValidacion">&nbsp;</td>
                     <td class="colBordes">&nbsp;</td>

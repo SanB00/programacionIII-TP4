@@ -106,7 +106,7 @@
                 <td class="colCampos">&nbsp;</td>
                 <td class="colValidacion">
                     <asp:Button ID="btnFiltrar" runat="server" Style="margin-left: 21px" Text="Filtrar" OnClick="btnFiltrar_Click" />
-                    <asp:Button ID="btnQuitarFiltro" runat="server" Style="margin-left: 31px" Text="Quitar Filtro" />
+                    <asp:Button ID="btnQuitarFiltro" runat="server" Style="margin-left: 31px" Text="Quitar Filtro" OnClick="btnQuitarFiltro_Click" />
                 </td>
                 <td class="colBordes">&nbsp;</td>
             </tr>
@@ -123,11 +123,19 @@
             </tr>
             <tr>
                 <td class="colBordes">&nbsp;</td>
-                <td class="colCampos">
+                <td class="colEtiquetas">&nbsp;</td>
+                <td class="colBordes">
+                    <asp:Label ID="lblCantResultados" runat="server" Text="Resultados:" BorderColor="#003366" Font-Bold="True" ForeColor="#006666"></asp:Label></td>
+                <td class="colValidacion">&nbsp;</td>
+                <td class="colBordes">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="colBordes">&nbsp;</td>
+                <td class="colCampos"></td>
+                <td class="colValidacion">
                     <asp:GridView ID="gvProductos" runat="server">
                     </asp:GridView>
                 </td>
-                <td class="colValidacion">&nbsp;</td>
                 <td class="colBordes">&nbsp;</td>
             </tr>
         </table>
