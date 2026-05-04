@@ -26,31 +26,18 @@ namespace TP4Grupo18
         }
         protected void btnFiltrar_Click(object sender, EventArgs e) {
             string consultaSQL = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad FROM Productos WHERE 1=1";
-            int idProducto = int.Parse(txtFiltroProducto.Text);
-            string operadorProducto = ddlFiltroProducto.SelectedValue;
-            consultaSQL += " AND IdProducto " + operadorProducto + " " + idProducto;
+            string strIdProducto = Common.eliminarEspaciosDelTexto(txtFiltroProducto.Text);
+            if (Common.esUnNroValido(strIdProducto)) {
+                int idProducto = int.Parse(strIdProducto);
+                string operadorProducto = ddlFiltroProducto.SelectedValue;
+                consultaSQL += " AND IdProducto " + operadorProducto + " " + idProducto;
+            }
 
-            if (txtFiltroCategoria.Text != "") {
-                int idCategoria = int.Parse(txtFiltroCategoria.Text);
-                string operador2 = "";
-                switch (ddlFiltroCategoria.SelectedValue) {
-                    case "Mayor a":
-                        operador2 = ">";
-                        break;
-
-                    case "Menor a":
-                        operador2 = "<";
-                        break;
-
-                    case "Igual a":
-                        operador2 = "=";
-                        break;
-                    default:
-                        operador2 = "=";
-                        break;
-                }
-
-                consultaSQL += " AND IdCategoría " + operador2 + " " + idCategoria;
+            string strIdCategoria = Common.eliminarEspaciosDelTexto(txtFiltroCategoria.Text);
+            if (Common.esUnNroValido(strIdCategoria)) {
+                int idCategoria = int.Parse(strIdCategoria);
+                string operadorCategoria = ddlFiltroCategoria.SelectedValue;
+                consultaSQL += " AND IdCategoría " + operadorCategoria + " " + idCategoria;
             }
             cargarGrillaDeProductos(consultaSQL);
         }

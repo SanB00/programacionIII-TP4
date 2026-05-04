@@ -123,11 +123,11 @@
             </tr>
             <tr>
                 <td class="colBordes">&nbsp;</td>
-                <td class="colCampos">
+                <td class="colCampos"></td>
+                <td class="colValidacion">
                     <asp:GridView ID="gvProductos" runat="server">
                     </asp:GridView>
                 </td>
-                <td class="colValidacion">&nbsp;</td>
                 <td class="colBordes">&nbsp;</td>
             </tr>
         </table>

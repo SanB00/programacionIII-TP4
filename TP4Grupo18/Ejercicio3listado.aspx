@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Ejercicio3.aspx.cs" Inherits="TP4Grupo18.Ejercicio3" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Ejercicio3Listado.aspx.cs" Inherits="TP4Grupo18.Ejercicio3Listado" %>
 
 <!DOCTYPE html>
 
@@ -82,7 +82,9 @@
                 <tr>
                     <td class="colBordes">&nbsp;</td>
                     <td class="colEtiquetas">gvLibros</td>
-                    <td class="colCampos"></td>
+                    <td class="colCampos">
+                        <asp:GridView ID="gvLibros" runat="server" AutoGenerateColumns="True"></asp:GridView>
+                    </td>
                     <td class="colValidacion">&nbsp;</td>
                     <td class="colBordes">&nbsp;</td>
                 </tr>
