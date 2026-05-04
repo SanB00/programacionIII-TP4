@@ -67,7 +67,7 @@
                     <td class="colBordes">&nbsp;</td>
                     <td class="colEtiquetas">Seleccionar Tema:</td>
                     <td class="colCampos">
-                        <asp:DropDownList ID="ddlTemas" runat="server" OnSelectedIndexChanged="ddlTemas_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddlTemas" runat="server">
                             <asp:ListItem Value="1">Tema 1</asp:ListItem>
                             <asp:ListItem Value="2">Tema 2</asp:ListItem>
                             <asp:ListItem Value="3">Tema 3</asp:ListItem>
@@ -86,7 +86,7 @@
                 <tr>
                     <td class="colBordes">&nbsp;</td>
                     <td class="colEtiquetas">
-                        <asp:LinkButton ID="lbVerLibros" runat="server">Ver Libros</asp:LinkButton></td>
+                        <asp:LinkButton ID="lbVerLibros" runat="server" OnClick="lbVerLibros_Click">Ver Libros</asp:LinkButton></td>
                     <td class="colCampos"></td>
                     <td class="colValidacion">&nbsp;</td>
                     <td class="colBordes">&nbsp;</td>

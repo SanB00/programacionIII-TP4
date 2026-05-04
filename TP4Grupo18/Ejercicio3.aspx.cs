@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Web.UI.WebControls;
 
 namespace TP4Grupo18
 {
@@ -22,10 +23,13 @@ namespace TP4Grupo18
             ddlTemas.DataTextField = "Tema";
             ddlTemas.DataValueField = "IdTema";
             ddlTemas.DataBind();
+
+            ddlTemas.Items.Insert(0, new ListItem("--Seleccione un tema--", "0"));
         }
 
-        protected void ddlTemas_SelectedIndexChanged(object sender, EventArgs e) {
-
+        protected void lbVerLibros_Click(object sender, EventArgs e) {
+            string idTemaSeleccionado = ddlTemas.SelectedValue;
+            Response.Redirect($"Ejercicio3B.aspx?idTemaSeleccionado={idTemaSeleccionado}");
         }
     }
 }
