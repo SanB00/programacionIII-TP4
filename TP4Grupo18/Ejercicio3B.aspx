@@ -91,7 +91,7 @@
 
             <tr>
                 <td class="colBordes">&nbsp;</td>
-                <td class="colEtiquetas"><asp:LinkButton ID="lbConsultarOtroTema" runat="server">Consultar Otro Tema</asp:LinkButton></td>
+                <td class="colEtiquetas"><asp:LinkButton ID="lbConsultarOtroTema" runat="server" OnClick="lbConsultarOtroTema_Click">Consultar Otro Tema</asp:LinkButton></td>
                 <td class="colCampos">&nbsp;</td>
                 <td class="colValidacion">&nbsp;</td>
                 <td class="colBordes">&nbsp;</td>

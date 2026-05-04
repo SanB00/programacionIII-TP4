@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace TP4Grupo18
 {
     public partial class Ejercicio2 : System.Web.UI.Page
     {
 
-#pragma warning disable IDE1006 // Naming Styles
         protected void Page_Load(object sender, EventArgs e) {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack) {
@@ -25,6 +21,7 @@ namespace TP4Grupo18
             gvProductos.DataBind();
             lblCantResultados.Text = $"Hay {tablaProductos.Rows.Count} resultado/s";
         }
+
         protected void btnFiltrar_Click(object sender, EventArgs e) {
             string consultaSQL = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad FROM Productos WHERE 1=1";
             string strIdProducto = Common.eliminarEspaciosDelTexto(txtFiltroProducto.Text);
