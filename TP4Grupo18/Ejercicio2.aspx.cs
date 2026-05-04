@@ -23,6 +23,7 @@ namespace TP4Grupo18
             DataTable tablaProductos = new ConexionBBDD().obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);
             gvProductos.DataSource = tablaProductos;
             gvProductos.DataBind();
+            lblCantResultados.Text = $"Hay {tablaProductos.Rows.Count} resultado/s";
         }
         protected void btnFiltrar_Click(object sender, EventArgs e) {
             string consultaSQL = "SELECT IdProducto, NombreProducto, IdCategoría, CantidadPorUnidad, PrecioUnidad FROM Productos WHERE 1=1";
