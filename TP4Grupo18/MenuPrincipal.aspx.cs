@@ -18,7 +18,7 @@ namespace TP2Grupo18
         }
 
         protected void btnEj3_Click(object sender, EventArgs e) {
-            Response.Redirect("Ejercicio3Listado.aspx");
+            Response.Redirect("Ejercicio3.aspx");
         }
     }
 }
