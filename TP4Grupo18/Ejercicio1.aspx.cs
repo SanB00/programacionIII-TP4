@@ -9,6 +9,7 @@ namespace TP4Grupo18
 {
     public partial class Ejercicio1 : System.Web.UI.Page
     {
+#pragma warning disable IDE1006 // Naming Styles
         protected void Page_Load(object sender, EventArgs e) {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack) {
@@ -16,6 +17,7 @@ namespace TP4Grupo18
                 cargarListaProvincias();
             }
         }
+#pragma warning restore IDE1006 // Naming Styles
 
         private void asignarReglasEnLosValidadores() {
             rfvLocalidadSeleccionada.ErrorMessage = "Seleccione una localidad del desplegable";

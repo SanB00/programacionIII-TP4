@@ -13,7 +13,7 @@
 
         .colEtiquetas {
             width: 20%;
-            text-align: left;
+            text-align: right;
             font-weight: bold;
         }
 
@@ -63,7 +63,8 @@
                 <td class="colBordes">&nbsp;</td>
             </tr>
             <tr>
-                <td class="colBordes">Id Producto</td>
+                <td class="colBordes">&nbsp;</td>
+                <td class="colEtiquetas">Id Producto</td>
                 <td class="colCampos">
                     <asp:DropDownList ID="ddlFiltroProducto" runat="server">
                         <asp:ListItem Value="=">Igual a</asp:ListItem>
@@ -77,7 +78,8 @@
                 <td class="colBordes">&nbsp;</td>
             </tr>
             <tr>
-                <td class="colBordes">IdCategoria</td>
+                <td class="colBordes">&nbsp;</td>
+                <td class="colEtiquetas">Id Categoría</td>
                 <td class="colCampos">
                     <asp:DropDownList ID="ddlFiltroCategoria" runat="server">
                         <asp:ListItem Value="=">Igual a</asp:ListItem>
@@ -92,6 +94,13 @@
             </tr>
             <tr>
                 <td class="colBordes">&nbsp;</td>
+                <td class="colCampos">&nbsp;</td>
+                <td class="colValidacion">&nbsp;</td>
+                <td class="colBordes">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="colBordes">&nbsp;</td>
+                <td class="colEtiquetas">&nbsp;</td>
                 <td class="colCampos">&nbsp;</td>
                 <td class="colValidacion">
                     <asp:Button ID="btnFiltrar" runat="server" Style="margin-left: 21px" Text="Filtrar" OnClick="btnFiltrar_Click" />

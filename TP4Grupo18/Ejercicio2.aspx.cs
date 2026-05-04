@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace TP4Grupo18
 {
@@ -15,10 +8,10 @@ namespace TP4Grupo18
     {
         //string NeptunoSQL = "Data Source=localhost\\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True";
         string NeptunoSQL = "Data Source=localhost;Initial Catalog=Neptuno;Integrated Security=True";
-
+#pragma warning disable IDE1006 // Naming Styles
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack) {
-                CargarGrillaDeProductos();
+                //CargarGrillaDeProductos();
             }
         }
 
@@ -30,7 +23,6 @@ namespace TP4Grupo18
             DataTable tablaProductos = new DataTable();
 
             adaptador.Fill(tablaProductos);
-
             gvProductos.DataSource = tablaProductos;
             gvProductos.DataBind();
 
@@ -41,7 +33,7 @@ namespace TP4Grupo18
             int idProducto = int.Parse(txtFiltroProducto.Text);
             string operadorProducto = ddlFiltroProducto.SelectedValue;
             consultaSQL += " AND IdProducto " + operadorProducto + " " + idProducto;
-            CargarGrillaDeProductos(consultaSQL);
+            //CargarGrillaDeProductos(consultaSQL);
         }
 
         protected void btnQuitarFiltro_Click(object sender, EventArgs e) {
@@ -52,7 +44,7 @@ namespace TP4Grupo18
 
             ddlFiltroProducto.SelectedIndex = 0;
             ddlFiltroCategoria.SelectedIndex = 0;
-            CargarGrillaDeProductos(consultaSQL);
+            //CargarGrillaDeProductos(consultaSQL);
         }
 
         protected void gvProductos_SelectedIndexChanged(object sender, EventArgs e) {
