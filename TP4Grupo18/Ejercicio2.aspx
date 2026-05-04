@@ -74,6 +74,7 @@
                 </td>
                 <td class="colValidacion">
                     <asp:TextBox ID="txtFiltroProducto" runat="server" Width="205px"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="revIdProducto" runat="server" ControlToValidate="txtFiltroProducto" ValidationExpression="^\d+$" ErrorMessage="Sólo números" ForeColor="Red" />
                 </td>
                 <td class="colBordes">&nbsp;</td>
             </tr>
