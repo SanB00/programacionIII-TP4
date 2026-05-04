@@ -9,12 +9,15 @@ namespace TP4Grupo18
         protected void Page_Load(object sender, EventArgs e) {
 #pragma warning disable IDE1006 // Naming Styles
             if (!IsPostBack) {
-                //string idTemaSeleccionado =
-                cargarLibrosPorTema();
+                string idTema = Request.QueryString["idTema"];
+
+                if (!string.IsNullOrEmpty(idTema)) {
+                    cargarLibrosPorTema(idTema);
+                }
             }
         }
 
-        private void cargarLibrosPorTema(string idTema = "1") {
+        private void cargarLibrosPorTema(string idTema) {
             string consultaSQL = $"SELECT * FROM Libros WHERE idTema = {idTema}";
             string cadenaConexion = new ConexionBBDD().obtenerCadenaDeConexion("Libreria");
             DataTable tablaLibros = new ConexionBBDD().obtenerTablaDeLaBaseDeDatos(consultaSQL, cadenaConexion);

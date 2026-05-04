@@ -28,8 +28,8 @@ namespace TP4Grupo18
         }
 
         protected void lbVerLibros_Click(object sender, EventArgs e) {
-            string idTemaSeleccionado = ddlTemas.SelectedValue;
-            Response.Redirect($"Ejercicio3B.aspx?idTemaSeleccionado={idTemaSeleccionado}");
+            string idTema = ddlTemas.SelectedValue;
+            Response.Redirect($"Ejercicio3B.aspx?idTema=" + idTema);
         }
     }
 }
