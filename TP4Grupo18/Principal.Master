@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Principal.master.cs" Inherits="TP4Grupo18.Principal" %>
+
+<!DOCTYPE html>
+
+<html>
+    <head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style type="text/css">
+        .colBordes {
+            width: 10%;
+        }
+
+        .colEtiquetas {
+            width: 20%;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .colCampos {
+            width: 20%;
+            text-align: center;
+        }
+
+        .colValidacion {
+            width: 35%;
+            text-align: left;
+        }
+
+        td {
+            vertical-align: top;
+            height: 100%;
+        }
+
+            td select {
+                width: 205px;
+                height: 100%;
+            }
+
+        h3 {
+            border-bottom: 2px solid darkblue; /* Línea azul de 2px de grosor */
+            display: inline-block; /* Hace que la línea solo cubra el texto, no el ancho total */
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="MenuPrincipal.aspx">Home</a></li>
+                </ul>
+            </nav>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
