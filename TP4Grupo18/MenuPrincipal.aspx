@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MenuPrincipal.aspx.cs" Inherits="TP2Grupo18.MenuPrincipal" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MenuPrincipal.aspx.cs" Inherits="TP5Grupo18.MenuPrincipal" %>
 
 
 <!DOCTYPE html>
