@@ -1,50 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Ejercicio1.aspx.cs" Inherits="TP4Grupo18.Ejercicio1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Ejercicio1.aspx.cs" Inherits="TP4Grupo18.Ejercicio1" MasterPageFile="Principal.Master" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
-    <style type="text/css">
-        .colBordes {
-            width: 10%;
-        }
-
-        .colEtiquetas {
-            width: 20%;
-            text-align: right;
-            font-weight: bold;
-        }
-
-        .colCampos {
-            width: 20%;
-            text-align: center;
-        }
-
-        .colValidacion {
-            width: 35%;
-            text-align: left;
-        }
-
-        td {
-            vertical-align: top;
-            height: 100%;
-        }
-
-            td select {
-                width: 205px;
-                height: 100%;
-            }
-
-        h3 {
-            border-bottom: 2px solid darkblue; /* Línea azul de 2px de grosor */
-            display: inline-block; /* Hace que la línea solo cubra el texto, no el ancho total */
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
         <div>
             <table>
                 <tr>
@@ -209,7 +165,4 @@
                 </tr>
             </table>
         </div>
-
-    </form>
-</body>
-</html>
+</asp:Content>

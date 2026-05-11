@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TP2Grupo18
+namespace TP5Grupo18
 {
     public partial class MenuPrincipal : System.Web.UI.Page
     {
